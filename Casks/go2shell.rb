@@ -1,6 +1,6 @@
 cask "go2shell" do
   version "1.0.2"
-  sha256 "758d2c5eddc535fd2ad259b478dac1dc049e38dcb8b1e19af1cd604c618c5932"
+  sha256 "769490b5a73a4300cd6a1fb40f9b525e361ae15b960b94005321af281c7d90a0"
 
   url "https://github.com/solarhell/go2shell/releases/download/v#{version}/go2shell.zip"
   name "go2shell"
