@@ -15,7 +15,7 @@ cask "go2shell" do
   desc "Open terminal from Finder"
   homepage "https://github.com/solarhell/go2shell"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "go2shell.app"
 
