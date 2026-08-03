@@ -1,4 +1,4 @@
-cask "go2shell" do
+cask "go2shell-solarhell" do
   version "1.0.3"
 
   on_arm do
@@ -11,7 +11,7 @@ cask "go2shell" do
     url "https://github.com/solarhell/go2shell/releases/download/v#{version}/go2shell-macOS-x86_64.zip"
   end
 
-  name "go2shell"
+  name "go2shell-solarhell"
   desc "Open terminal from Finder"
   homepage "https://github.com/solarhell/go2shell"
 
