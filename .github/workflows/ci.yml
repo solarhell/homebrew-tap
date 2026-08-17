@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: macos-latest
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@v5
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Register this checkout as solarhell/tap
+        run: |
+          set -euo pipefail
+          TAP_DIR="$(brew --repository)/Library/Taps/solarhell/homebrew-tap"
+          mkdir -p "$(dirname "$TAP_DIR")"
+          rm -rf "$TAP_DIR"
+          ln -s "$GITHUB_WORKSPACE" "$TAP_DIR"
+
+      - name: Validate cask_renames.json
+        run: python3 .github/scripts/validate_renames.py
+
+      - name: brew style
+        run: brew style solarhell/tap
+
+      - name: brew audit (arm)
+        run: brew audit --cask --tap solarhell/tap --arch=arm
+
+      - name: brew audit (intel)
+        run: brew audit --cask --tap solarhell/tap --arch=intel
