@@ -1,4 +1,4 @@
-cask "go2shell" do
+cask "solarhell-go2shell" do
   version "1.0.3"
 
   on_arm do
